@@ -1,0 +1,20 @@
+header{
+  margin-top: 2em;
+}
+
+.table{
+  margin-top: 3em;
+}
+
+.gain{
+  color:#4af533;
+}
+
+.loss{
+  color:#ff1100;
+}
+
+.ticker{
+  font-size: .95em;
+  color:#525252;
+}
