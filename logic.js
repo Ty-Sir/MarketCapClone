@@ -5,7 +5,8 @@ let marketList = BASE_URL + MARKET_URL;
 
 const formatter = new Intl.NumberFormat("en-US",{
   style: "currency",
-  currency: "USD"
+  currency: "USD",
+  maximumSignificantDigits: 17
 });
 
 let coins = [marketList]; //will add more urls to get 24h volume
@@ -17,38 +18,35 @@ Promise.all(coins.map(urls => {
 .then(data => {
   console.log(data);
 
-    for (i = 0; i < 100; i++){
+    for (i = 0; i < data[0].length; i++){
 
       let rank = data[0][i].market_cap_rank;
       let name = data[0][i].name;
       let ticker = data[0][i].symbol;
       let price = formatter.format(data[0][i].current_price);
-      let hour = data[0][i].price_change_percentage_1h_in_currency.toFixed(1) + "%";
-      let day = data[0][i].price_change_percentage_24h_in_currency.toFixed(1) + "%";
-      let sevenDay =  data[0][i].price_change_percentage_7d_in_currency.toFixed(1) + "%";
+      let hour = data[0][i].price_change_percentage_1h_in_currency;
+      let day = data[0][i].price_change_percentage_24h_in_currency;
+      let sevenDay = data[0][i].price_change_percentage_7d_in_currency;
       let volume = formatter.format(data[0][i].total_volume);
       let marketCap = formatter.format(data[0][i].market_cap);
 
-      let cell1 = '<td class="rank">' + rank + '</td>';
-      let cell2 = '<td class="name">' + name + '</td>';
-      let cell3 = '<td class="ticker">' + ticker + '</td>';
-      let cell4 = '<td class="price">' + price + '</td>';
-      let cell5 = '<td class="hour">' + hour + '</td>';
-      let cell6 = '<td class="day">' + day + '</td>';
-      let cell7 = '<td class="sevenDay">' + sevenDay + '</td>';
-      let cell8 = '<td class="volume">' + volume + '</td>';
-      let cell9 = '<td class="marketCap">' + marketCap + '</td>';
+      let hourGainLoss = hour >= 0  ? addClass = "gain" : addClass = "loss";
+      let dayGainLoss = day >= 0  ? addClass = "gain" : addClass = "loss";
+      let sevenDayGainLoss = sevenDay >= 0  ? addClass = "gain" : addClass = "loss";
 
-      let row = "<tr>" + cell1 + cell2 + cell3 + cell4 + cell5 + cell6 + cell7 + cell8 + cell9 + "</tr>";
+      let cell1 = '<td/ class="rank">' + rank;
+      let cell2 = '<td/ class="name text-left">' + name;
+      let cell3 = '<td/ class="ticker">' + ticker;
+      let cell4 = '<td/ class="price text-right">' + price;
+      let cell5 = '<td/ class="hour '+ hourGainLoss + '">' + parseFloat(hour || 0).toFixed(1) + "%";
+      let cell6 = '<td/ class="day '+ dayGainLoss + '">' + parseFloat(day || 0).toFixed(1) + "%";
+      let cell7 = '<td/ class="sevenDay '+ sevenDayGainLoss + '">' + parseFloat(sevenDay || 0).toFixed(1) + "%";
+      let cell8 = '<td/ class="volume text-right">' + volume;
+      let cell9 = '<td/ class="marketCap text-right">' + marketCap;
+
+      let row = "<tr/>" + cell1 + cell2 + cell3 + cell4 + cell5 + cell6 + cell7 + cell8 + cell9;
 
       $("tbody").append(row);
-
-      if (hour >= 0){
-        $(".hour").addClass("gain");
-      }
-      else {
-        $(".hour").addClass('loss');//figure out why this doesn't work beofre moving on
-      };
   };
 })
 .catch (err =>{
