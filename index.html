@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script type="text/javascript" src="logic.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <link rel="stylesheet" text=text/css href="stylesheet.css">
+    <script type="text/javascript" src="logic.js"></script>
     <title>Market Cap Clone</title>
   </head>
 
@@ -16,18 +16,18 @@
     </header>
 
     <div class="position-relative">
-      <table class="table container table-hover text-center " id="cointable">
+      <table class="table table-sortable container table-hover text-center"  id="coinTable">
         <thead>
           <tr>
-            <th scope="col">Rank</th>
-            <th scope="col" class="text-left">Coin</th>
+            <th scope="col" class="clickable">Rank</th>
+            <th scope="col" class="text-left clickable">Coin</th>
             <th scope="col"></th>
-            <th scope="col" class="text-right">Price</th>
-            <th scope="col">1h</th>
-            <th scope="col">24h</th>
-            <th scope="col">7d</th>
-            <th scope="col" class="text-right">Total Volume</th>
-            <th scope="col" class="text-right">Market Cap.</th>
+            <th scope="col" class="text-right clickable">Price</th>
+            <th scope="col" class="clickable">1h</th>
+            <th scope="col" class="clickable">24h</th>
+            <th scope="col" class="clickable">7d</th>
+            <th scope="col" class="text-right clickable">Total Volume</th>
+            <th scope="col" class="text-right clickable">Market Cap.</th>
           </tr>
         </thead>
         <tbody>
