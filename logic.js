@@ -1,16 +1,25 @@
-let BASE_URL="https://api.coingecko.com/api/v3";
-let MARKET_URL="/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d";
+const BASE_URL = "https://api.coingecko.com/api/v3";
+const MARKET_URL = "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d";
+const ALL_COINS = "/coins/list";
+const ALL_EXCHANGES = "/exchanges/list"
 
 let marketList = BASE_URL + MARKET_URL;
+let allCoins = BASE_URL + ALL_COINS;
+let allExchanges = BASE_URL + ALL_EXCHANGES;
 
-const formatter = new Intl.NumberFormat('en-US',{
+let usd = new Intl.NumberFormat('en-US',{
   style: 'currency',
   currency: 'USD',
   maximumSignificantDigits: 19
 });
 
+let eur = new Intl.NumberFormat('de-DE',{
+  style: 'currency',
+  currency: 'EUR',
+  maximumSignificantDigits: 19
+});
 
-let coins = [marketList]; //will add more urls to get 24h volume
+let coins = [marketList, allCoins, allExchanges];
 
 Promise.all(coins.map(urls => {
   return fetch(urls).then(res =>
@@ -18,7 +27,53 @@ Promise.all(coins.map(urls => {
   }))
 .then(data => {
   console.log(data);
+    //all coins page
+    for (c = 0; c < data[1].length; c++){
+      let name2 = data[1][c].name;
+      let ticker2 = data[1][c].symbol;
 
+      let cell1Table2 = '<td/ class="name">' + '<a/ href="https://www.google.com/search?q= '+ name2 +' cryptocurrency" target="_blank">' + name2;
+      let cell2Table2 = '<td/ class="ticker">' + ticker2;
+
+      let rowTable2 = '<tr/>' + cell1Table2 + cell2Table2;
+
+      $("tbody.tableTwo").append(rowTable2);
+    };
+    //all coins search bar
+      $(document).ready(function(){
+        $("#myInput2").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#searchTable2 tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    let coinList =  '<a/ href="coinList.html">' + data[1].length;
+      $("#allCoins").append(coinList);
+
+    //all exchanges page
+    for (x = 0; x < data[2].length; x++){
+      let exName = data[2][x].name;
+
+      let cell1Table3 = '<td/ class="name">' + '<a/ href="https://www.google.com/search?q= '+ exName +' crypto exchange" target="_blank">' + exName;
+
+      let rowTable3 = '<tr/>' + cell1Table3;
+
+      $("tbody.tableThree").append(rowTable3);
+    };
+    //all exchanges search bar
+      $(document).ready(function(){
+        $("#myInput3").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#searchTable3 tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    let exchangeList = '<a/ href="exchanges.html">' + data[2].length;
+      $("#allExchanges").append(exchangeList);
+
+    //home page
     for (i = 0; i < data[0].length; i++){
 
       let rank = data[0][i].market_cap_rank;
@@ -34,27 +89,38 @@ Promise.all(coins.map(urls => {
       let low24 = data[0][i].low_24h;
       let high24 = data[0][i].high_24h;
 
-
       let hourGainLoss = hour >= 0  ? addClass = "gain" : addClass = "loss";
       let dayGainLoss = day >= 0  ? addClass = "gain" : addClass = "loss";
       let sevenDayGainLoss = sevenDay >= 0  ? addClass = "gain" : addClass = "loss";
 
-
       let cell1 = '<td/ class="rank">' + rank;
-      let cell2 = '<td/ class="name ticker text-left">' + '<img alt="' + name + ' logo" class="logo" src="' + logo + '">' + ' ' + name;
+      let cell2 = '<td/ class="name ticker text-left">' +'<img alt="' + name + ' logo" class="logo" src="' + logo + '">' +'<a/ href="https://www.google.com/search?q= ' + name + ' " target="_blank">' + name;
       let cell3 = '<td/ class="ticker">' + ticker;
-      let cell4 = '<td/ class="price text-right">' + formatter.format(price) + '<p/ class="text-right highLow high">' + "24h high " + formatter.format(high24) + '<p/ class="text-right highLow low">' + "24h low " + formatter.format(low24);
+      let cell4 = '<td/ class="price text-right">' + usd.format(price) + '<p/ class="text-right highLow high">' + "24h high " + usd.format(high24) + '<p/ class="text-right highLow low">' + "24h low " + usd.format(low24);
       let cell5 = '<td/ class="hour '+ hourGainLoss + '">' + parseFloat(hour || 0).toFixed(1) + "%";
       let cell6 = '<td/ class="day '+ dayGainLoss + '">' + parseFloat(day || 0).toFixed(1) + "%";
       let cell7 = '<td/ class="sevenDay '+ sevenDayGainLoss + '">' + parseFloat(sevenDay || 0).toFixed(1) + "%";
-      let cell8 = '<td/ class="volume text-right">' + formatter.format(volume);
-      let cell9 = '<td/ class="marketCap text-right">'  + formatter.format(marketCap);
+      let cell8 = '<td/ class="volume text-right">' + usd.format(volume);
+      let cell9 = '<td/ class="marketCap text-right">'  + usd.format(marketCap);
 
       let row = '<tr/>' + cell1 + cell2 + cell3 + cell4 + cell5 + cell6 + cell7 + cell8 + cell9;
 
-      $("tbody").append(row);
+      $("tbody.tableOne").append(row);
     };
-    //heavily helped by a video to reach this function
+
+
+
+    //search bar homepage
+      $(document).ready(function(){
+        $("#myInput1").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#searchTable1 tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+
+    //TABLE SORTER--heavily helped by a video to reach this function//cant get jquery to work with it
     function sortTable(table, column, asc = true){
       const dirModifier = asc ? 1 : -1;
       const tBody = table.tBodies[0];
@@ -92,6 +158,12 @@ Promise.all(coins.map(urls => {
         sortTable(tableElement, headerIndex, !currentIsAsc);
       });
     });
+
+      // //currency exchange button
+      // $("#currBtn").on('click', () => {
+      //
+      // console.log("currency clicked");
+      // });
 
 })
 .catch (err =>{

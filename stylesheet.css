@@ -1,10 +1,58 @@
 header{
-  margin-top: 2em;
+  padding: 2em 0 2em 0;
+  background-image: linear-gradient(#bbd8ed, #f2faff);
 }
 
+hr{
+  margin:0 0 .75em 0;
+}
 
-.table{
-  margin-top: 3em;
+.topBar{
+  margin-left: 1.9em;
+  list-style: none;
+}
+
+h6{
+  margin: 0;
+}
+
+li{
+  padding: 0em 1em 0 1em;
+  font-size: .8em
+}
+
+th{
+  font-variant: small-caps;
+}
+
+.buttons{
+  padding:none;
+  margin: 0 0 .2em 4.5em;
+}
+
+.divTable,.divTableTwo, .divTableThree {
+  margin: 0 4.5em 0 4.5em;
+}
+
+#myInput2, #myInput3{
+  margin: 1em 0 .5em 4.5em;
+}
+
+a{
+  margin-left: .2em;
+}
+
+a:link{
+  color: #083f61;
+  font-weight: bold;
+}
+
+a:visited{
+  color: #083f61;
+}
+
+a:hover{
+  color: #6898a3;
 }
 
 .gain{
@@ -48,7 +96,7 @@ header{
 .highLow{
   padding: 0;
   margin: 0;
-  font-size: 8pt;
+  font-size: 7pt;
   color: #b5b5b5;
 }
 
