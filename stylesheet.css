@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 header{
   padding: 2em 0 2em 0;
   background-image: linear-gradient(#bbd8ed, #f2faff);
@@ -9,6 +13,7 @@ hr{
 
 .topBar{
   margin-left: 1.9em;
+  margin-right: 0em;
   list-style: none;
 }
 
@@ -17,8 +22,13 @@ h6{
 }
 
 li{
-  padding: 0em 1em 0 1em;
-  font-size: .8em
+  padding: 0em .2em 0 1em;
+  font-size: .8em;
+  font-weight: bold;
+}
+
+span{
+  font-size: .8em;
 }
 
 th{
@@ -30,8 +40,12 @@ th{
   margin: 0 0 .2em 4.5em;
 }
 
-.divTable,.divTableTwo, .divTableThree {
+.divTable, .divTableTwo, .divTableThree {
   margin: 0 4.5em 0 4.5em;
+}
+
+.smShadow{
+  box-shadow: 0 1px 10px #c7c7c7;
 }
 
 #myInput2, #myInput3{
@@ -106,4 +120,24 @@ a:hover{
 
 .low{
   color:#a34848;
+}
+
+.goToTopbtn{
+  opacity: 60%;
+  position: fixed;
+  background: #6fb4ed;
+  bottom: 2em;
+  right: .75em;
+  width: 2.5em;
+  height: 2.5em;
+
+  border-radius: 10%;
+
+  text-align: center;
+  line-height: 50px;
+  font-size: 1.2em;
+}
+
+.fas{
+  color: white;
 }
