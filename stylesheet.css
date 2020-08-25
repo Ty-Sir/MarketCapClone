@@ -35,8 +35,8 @@ th{
   font-variant: small-caps;
 }
 
-.buttons{
-  padding:none;
+.aboveTable{
+  padding: 0;
   margin: 0 0 .2em 4.5em;
 }
 
