@@ -4,7 +4,7 @@ html{
 
 header{
   padding: 2em 0 2em 0;
-  background-image: linear-gradient(#bbd8ed, #f2faff);
+  background-image: linear-gradient(10deg, #bbd8ed, #f2faff, #fffddb);
 }
 
 hr{
@@ -12,13 +12,14 @@ hr{
 }
 
 .topBar{
-  margin-left: 1.9em;
-  margin-right: 0em;
-  list-style: none;
+  margin-left: 3.8em;
+  margin-bottom: 1em;
+  align-items: center;
 }
 
-h6{
-  margin: 0;
+li:first-child{
+  font-size: 1em;
+  padding-left: .55em;
 }
 
 li{
@@ -27,46 +28,44 @@ li{
   font-weight: bold;
 }
 
+.name:hover{
+  transform: scale(1.1);
+}
+
 span{
-  font-size: .8em;
+  font-weight: normal;
 }
 
 th{
   font-variant: small-caps;
+  transition: background .25s ease-in;
 }
 
 .aboveTable{
-  padding: 0;
   margin: 0 0 .2em 4.5em;
 }
 
-.divTable, .divTableTwo, .divTableThree {
-  margin: 0 4.5em 0 4.5em;
+.divTable{
+  margin: 0 4.5em;
 }
 
 .smShadow{
   box-shadow: 0 1px 10px #c7c7c7;
 }
 
-#myInput2, #myInput3{
-  margin: 1em 0 .5em 4.5em;
-}
-
 a{
   margin-left: .2em;
 }
 
-a:link{
+
+a:link, a:visited{
   color: #083f61;
   font-weight: bold;
 }
 
-a:visited{
-  color: #083f61;
-}
-
 a:hover{
   color: #6898a3;
+  text-decoration: none;
 }
 
 .gain{
@@ -104,7 +103,7 @@ a:hover{
 }
 
 .th-sort-asc,.th-sort-desc {
-  background-color: #f0f0f0;
+  background-color: #f2faff;
 }
 
 .highLow{
@@ -130,9 +129,7 @@ a:hover{
   right: .75em;
   width: 2.5em;
   height: 2.5em;
-
   border-radius: 10%;
-
   text-align: center;
   line-height: 50px;
   font-size: 1.2em;
@@ -140,4 +137,8 @@ a:hover{
 
 .fas{
   color: white;
+}
+
+.goToTopbtn:hover{
+  background: #0c86eb;
 }
